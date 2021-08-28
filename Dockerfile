@@ -1,4 +1,6 @@
-FROM golang:1.16
+FROM golang:1.16.7-alpine
+
+RUN apk update && apk --no-cache add git
 
 RUN go install github.com/uudashr/gopkgs/v2/cmd/gopkgs@latest \
   && go install github.com/ramya-rao-a/go-outline@latest \
@@ -10,6 +12,6 @@ RUN go install github.com/uudashr/gopkgs/v2/cmd/gopkgs@latest \
   && go install golang.org/x/tools/gopls@latest \
   && go install golang.org/x/tools/cmd/goimports@latest
 
-WORKDIR /go/src/github.com/ShunyaNagashige/cohduc-backend
+WORKDIR /go/src/github.com/ShunyaNagashige/go-mysql-docker-starter
 
 # RUN go mod init github.com/ShunyaNagashige/go-mysql-de
