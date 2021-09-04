@@ -11,6 +11,9 @@ services:
     ports:
       #APIサーバ用のポート
       - ${APP_PORT}:8080
+    environment:
+      - ENV=${ENV}
+      - SIGNINGKEY=${SIGNINGKEY}
     depends_on:
       - "db"
 
@@ -19,7 +22,7 @@ services:
     volumes:
           # 初期データを投入するSQLが格納されているdir
           - ./docker/mysql/init:/docker-entrypoint-initdb.d
-          - db-data:/var/lib/mysql
+          - cohduc-data:/var/lib/mysql
           - ./logs:/var/log/mysql
           - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
@@ -34,4 +37,4 @@ services:
       - ${DB_PORT}:3306
 
 volumes:
-  db-data:
+  cohduc-data:
