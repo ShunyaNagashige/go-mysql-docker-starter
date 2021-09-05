@@ -22,7 +22,7 @@ services:
     volumes:
           # 初期データを投入するSQLが格納されているdir
           - ./docker/mysql/init:/docker-entrypoint-initdb.d
-          - cohduc-data:/var/lib/mysql
+          - db-data:/var/lib/mysql
           - ./logs:/var/log/mysql
           - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
@@ -37,4 +37,4 @@ services:
       - ${DB_PORT}:3306
 
 volumes:
-  cohduc-data:
+  db-data:
